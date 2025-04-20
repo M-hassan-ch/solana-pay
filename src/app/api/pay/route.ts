@@ -18,10 +18,9 @@ export async function POST(request: Request) {
   const body = await request.json();
   console.log('body: ', body);
 
-  const accountField = (request.body as any)?.account;
-  if (!accountField) throw new Error('missing account');
+  if (!body?.account) throw new Error('missing account');
 
-  const sender = new PublicKey(accountField);
+  const sender = new PublicKey(body.account);
   const connection = new Connection('https://api.devnet.solana.com');
   const recentBlockhash = await connection.getLatestBlockhash();
 
