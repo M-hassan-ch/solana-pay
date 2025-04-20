@@ -3,9 +3,8 @@ import fs from 'fs';
 import { Keypair } from '@solana/web3.js';
 
 // const splToken = new PublicKey(process.env.USDC_MINT || '');
-// const MERCHANT_WALLET = new PublicKey(process.env.MERCHANT_WALLET || '');
-const ARRAY_IN_JSON_FILE = JSON.parse(fs.readFileSync('m23tCqXQetc3T6xK49bPy27cDR8xoGT3HVmzcz2tNCL.json', 'utf8'));
-const merchant_keypair = Keypair.fromSecretKey(Uint8Array.from(ARRAY_IN_JSON_FILE));
+// const MERCHANT_WALLET = new PublicKey(process.env.MERCHANT_WALLET || '');]
+const merchant_keypair = Keypair.fromSecretKey(Uint8Array.from([50,8,53,167,104,35,113,205,220,107,239,2,118,168,124,48,114,180,92,111,74,248,233,106,132,132,78,214,87,72,15,15,11,70,190,20,178,231,89,58,157,213,226,47,117,25,71,254,231,254,164,130,28,87,22,114,115,54,16,248,27,31,79,109]));
 
 export async function GET(request: Request) {
   console.log('POST request received', merchant_keypair.publicKey.toBase58());
