@@ -15,7 +15,8 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   console.log('POST request received', merchant_keypair.publicKey.toBase58());
-  console.log('body: ', request.body);
+  const body = await request.json();
+  console.log('body: ', body);
 
   const accountField = (request.body as any)?.account;
   if (!accountField) throw new Error('missing account');
