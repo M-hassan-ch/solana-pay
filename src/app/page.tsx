@@ -4,7 +4,7 @@ import { createQR } from '@solana/pay'
 import { useEffect, useRef } from 'react';
 
 export default function Page() {
-  const SOLANA_PAY_URL = 'https://solana.com';
+  const SOLANA_PAY_URL = 'solana:https://solana-pay-henna.vercel.app/api/pay';
   const SIZE = 360;
 
 
