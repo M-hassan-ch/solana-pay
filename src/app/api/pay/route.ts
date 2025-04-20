@@ -39,6 +39,6 @@ export async function POST(request: Request) {
 
   return Response.json({
     message: 'Thanks for your purchase!',
-    base64Tx,
+    transaction: base64Tx,
   });
 }
