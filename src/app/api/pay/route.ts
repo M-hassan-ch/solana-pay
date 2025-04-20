@@ -22,15 +22,15 @@ export async function POST(request: Request) {
 
   const sender = new PublicKey(body.account);
   const connection = new Connection('https://api.devnet.solana.com');
-  const recentBlockhash = await connection.getLatestBlockhash();
 
   const instruction = SystemProgram.transfer({
     fromPubkey: sender,
-    toPubkey: merchant_keypair.publicKey,
-    lamports: 0.1 * LAMPORTS_PER_SOL,
+    toPubkey: new PublicKey('m23tCqXQetc3T6xK49bPy27cDR8xoGT3HVmzcz2tNCL'),
+    lamports: BigInt(0.1 * LAMPORTS_PER_SOL),
   });
 
   const transaction = new Transaction().add(instruction);
+  const recentBlockhash = await connection.getLatestBlockhash();
   transaction.feePayer = sender;
   transaction.recentBlockhash = recentBlockhash.blockhash;
 
