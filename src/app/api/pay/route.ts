@@ -38,6 +38,7 @@ export async function POST(request: Request) {
   const serializedTransaction = transaction.serialize({ requireAllSignatures: false, verifySignatures: false });
   const base64Tx = serializedTransaction.toString('base64');
 
+  
   return Response.json({
     message: 'Thanks for your purchase!',
     transaction: base64Tx,
