@@ -31,7 +31,7 @@ export async function POST(request: Request) {
 
   const transaction = new Transaction().add(instruction);
   const recentBlockhash = await connection.getLatestBlockhash();
-  transaction.feePayer = sender;
+  transaction.feePayer = merchant_keypair.publicKey;
   transaction.recentBlockhash = recentBlockhash.blockhash;
 
   const serializedTransaction = transaction.serialize({ requireAllSignatures: false, verifySignatures: false });
