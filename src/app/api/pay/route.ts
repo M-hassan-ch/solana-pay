@@ -29,16 +29,23 @@ export async function POST(request: Request) {
     lamports: BigInt(0.1 * LAMPORTS_PER_SOL),
   });
 
-  const transaction = new Transaction().add(instruction);
+  let transaction = new Transaction().add(instruction);
   const recentBlockhash = await connection.getLatestBlockhash();
   transaction.feePayer = merchant_keypair.publicKey;
   transaction.recentBlockhash = recentBlockhash.blockhash;
+
+  // for correct account ordering 
+  transaction = Transaction.from(transaction.serialize({
+    verifySignatures: false,
+    requireAllSignatures: false,
+  }));
+
   transaction.sign(merchant_keypair);
 
   const serializedTransaction = transaction.serialize({ requireAllSignatures: false, verifySignatures: false });
   const base64Tx = serializedTransaction.toString('base64');
 
-  
+
   return Response.json({
     message: 'Thanks for your purchase!',
     transaction: base64Tx,
