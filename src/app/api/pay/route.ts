@@ -33,6 +33,7 @@ export async function POST(request: Request) {
   const recentBlockhash = await connection.getLatestBlockhash();
   transaction.feePayer = merchant_keypair.publicKey;
   transaction.recentBlockhash = recentBlockhash.blockhash;
+  transaction.sign(merchant_keypair);
 
   const serializedTransaction = transaction.serialize({ requireAllSignatures: false, verifySignatures: false });
   const base64Tx = serializedTransaction.toString('base64');
